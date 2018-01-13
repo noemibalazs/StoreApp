@@ -29,7 +29,8 @@ public class BookDbHelper extends SQLiteOpenHelper {
                 + BookEntry.BOOK_COLUMN_QUANTITY + " INTEGER NOT NULL DEFAULT 0, "
                 + BookEntry.BOOK_COLUMN_SUPPLIER_NAME + " TEXT NOT NULL, "
                 + BookEntry.BOOK_COLUMN_SUPPLIER_EMAIL + " TEXT NOT NULL, "
-                + BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER + " TEXT NOT NULL);";
+                + BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER + " TEXT NOT NULL, "
+                + BookEntry.BOOK_COLUMN_IMAGE + " BLOB NOT NULL );";
         db.execSQL(SQL_CREATE_BOOKS_TABLE);
     }
 

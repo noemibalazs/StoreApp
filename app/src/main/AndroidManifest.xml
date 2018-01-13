@@ -22,6 +22,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.storeapp.BookActivity" />
         </activity>
+
+        <provider
+            android:authorities="com.example.android.storeapp"
+            android:name=".data.BookProvider"
+            android:exported="false"/>
     </application>
 
 </manifest>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <integer-array name="array_image_options">
-        <item>@drawable/book</item>
-        <item>@drawable/ebook</item>
-        <item>@drawable/b_a</item>
-    </integer-array>
-</resources>

@@ -10,7 +10,6 @@
     <TextView
         android:id="@+id/adapter_name"
         android:text="@string/adapter_name"
-        android:textSize="?android:textAppearanceMedium"
         android:textColor="#795548"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -20,7 +19,6 @@
         android:text="@string/adapter_author"
         android:layout_marginTop="10dp"
         android:layout_below="@id/adapter_name"
-        android:textSize="?android:textAppearanceMedium"
         android:textColor="#795548"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -35,7 +33,6 @@
         <TextView
             android:id="@+id/adapter_quantity"
             android:text="@string/adapter_quantity"
-            android:textSize="?android:textAppearanceMedium"
             android:textColor="#795548"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -45,7 +42,6 @@
             android:id="@+id/adapter_number"
             android:text="1"
             android:textColor="#795548"
-            android:textSize="?android:textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -54,7 +50,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/adapter_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:scaleType="centerCrop"
