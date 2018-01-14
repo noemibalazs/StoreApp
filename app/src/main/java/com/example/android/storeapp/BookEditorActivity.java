@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.app.LoaderManager;
 import android.support.v4.app.NavUtils;
@@ -107,16 +108,8 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
        mImageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               String selection = (String) parent.getItemAtPosition(position);
-               if (!TextUtils.isEmpty(selection)){
-                   if (selection.equals(BookEntry.BOOK_BOOK)){
-                       mImage = BookEntry.BOOK_EBOOK;
-                   } else if (selection.equals(BookEntry.BOOK_EBOOK)){
-                       mImage = BookEntry.BOOK_EBOOK;
-                   } else if (selection.equals(BookEntry.BOOK_AUDIO)){
-                       mImage = BookEntry.BOOK_AUDIO;
-                   }
-               }
+               Toast.makeText(BookEditorActivity.this, "selected", Toast.LENGTH_SHORT).show();
+
            }
 
            @Override
@@ -340,13 +333,13 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
             switch (imageB){
                 case BookEntry.BOOK_BOOK:
-                    mImageSpinner.setSelected(true);
+                    mImageSpinner.setSelection(BookEntry.BOOK_BOOK);
                     break;
                 case BookEntry.BOOK_AUDIO:
-                    mImageSpinner.setSelected(true);
+                    mImageSpinner.setSelection(BookEntry.BOOK_AUDIO);
                     break;
                 case BookEntry.BOOK_EBOOK:
-                    mImageSpinner.setSelected(true);
+                    mImageSpinner.setSelection(BookEntry.BOOK_EBOOK);
                     break;
             }
 
@@ -363,7 +356,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         mSupplierName.setText("");
         mSupplierEmail.setText("");
         mSupplierPhone.setText("");
-        mImageSpinner.setSelected(true);
+        mImageSpinner.setSelection(BookEntry.BOOK_BOOK);
 
 
     }

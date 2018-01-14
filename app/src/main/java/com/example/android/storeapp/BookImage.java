@@ -12,11 +12,12 @@ public class BookImage {
 
     public int mImage;
 
-    public BookImage( int image){
+    public BookImage( int image) {
         mImage = image;
     }
 
     public int getImage(){
+
         return mImage;
     }
 }
