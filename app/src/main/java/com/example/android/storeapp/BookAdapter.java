@@ -53,14 +53,12 @@ public class BookAdapter extends CursorAdapter {
         String author = cursor.getString(authorIndex);
         int quantity = cursor.getInt(quantityIndex);
 
-        byte[] imageInByte = cursor.getBlob(imageIndex);
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageInByte);
-        Bitmap theImage = BitmapFactory.decodeStream(inputStream);
+        int image = cursor.getInt(imageIndex);
 
         nameView.setText(name);
         authorView.setText(author);
         numberView.setText(Integer.toString(quantity));
-        imageView.setImageBitmap(theImage);
+        imageView.setImageResource(image);
         
 
 

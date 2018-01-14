@@ -7,6 +7,8 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +22,8 @@ import android.widget.ListView;
 
 import com.example.android.storeapp.data.BookContract.BookEntry;
 
+import java.io.ByteArrayOutputStream;
+
 
 public class BookActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
@@ -32,6 +36,8 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
+
+        getApplicationContext().deleteDatabase("library.db");
 
         ListView listView = findViewById(R.id.list_view);
 

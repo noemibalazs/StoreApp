@@ -31,4 +31,32 @@
 
     <string name="audio_book">Audio Book</string>
 
+    <string name="add_a_book">Add a book</string>
+
+    <string name="edit_a_book">Edit a book</string>
+
+    <string name="book_saved">Book saved</string>
+
+    <string name="error_with_saving_book"></string>
+
+    <string name="book_update_failed">Book update failed</string>
+
+    <string name="book_updated">Book_updated</string>
+
+    <string name="error_with_deleting_a_book">Error with deleting a book</string>
+
+    <string name="book_deleted">Book deleted</string>
+
+    <string name="delete_this_book">Delete this book?</string>
+
+    <string name="delete">Delete</string>
+
+    <string name="cancel">Cancel</string>
+
+    <string name="discard_your_changes_and_quit_editing">Discard your changes and quit editing?</string>
+
+    <string name="discard">Discard</string>
+
+    <string name="keep_editing">Keep editing</string>
+
 </resources>

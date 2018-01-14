@@ -42,9 +42,9 @@ public final class BookContract {
         public static final String BOOK_COLUMN_SUPPLIER_PHONE_NUMBER = "Supplier_Phone_Number";
         public static final String BOOK_COLUMN_IMAGE = "Image";
 
-        public static final byte BOOK_EBOOK = (byte) R.drawable.ebook;
-        public static final byte BOOK_BOOK = (byte) R.drawable.book;
-        public static final byte BOOK_AUDIO = (byte)R.drawable.b_a;
+        public static final int BOOK_EBOOK =  R.drawable.ebook;
+        public static final int BOOK_BOOK =  R.drawable.book;
+        public static final int BOOK_AUDIO = R.drawable.b_a;
 
 
     }
