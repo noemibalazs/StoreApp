@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/adapter_name"
         android:text="@string/adapter_name"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:textColor="#795548"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -53,7 +53,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="45dp"
+        android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
