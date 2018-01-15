@@ -51,13 +51,13 @@ public class BookAdapter extends CursorAdapter {
 
         String name = cursor.getString(nameIndex);
         String author = cursor.getString(authorIndex);
-        int quantity = cursor.getInt(quantityIndex);
+        double quantity = cursor.getDouble(quantityIndex);
 
         int image = cursor.getInt(imageIndex);
 
         nameView.setText(name);
         authorView.setText(author);
-        numberView.setText(Integer.toString(quantity));
+        numberView.setText(Double.toString(quantity));
         imageView.setImageResource(image);
         
 
