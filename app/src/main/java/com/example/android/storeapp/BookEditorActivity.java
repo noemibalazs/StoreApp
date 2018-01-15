@@ -206,9 +206,9 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
         values.put(BookEntry.BOOK_COLUMN_TITLE, bookName);
         values.put(BookEntry.BOOK_COLUMN_AUTHOR, bookAuthor);
-        int price = 0;
+        double price = 0;
         if (!TextUtils.isEmpty(bookPrice)){
-            price = Integer.parseInt(bookPrice);
+            price = Double.parseDouble(bookPrice);
         }
         values.put(BookEntry.BOOK_COLUMN_PRICE, price);
         int quantity = 0;
