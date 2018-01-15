@@ -10,6 +10,7 @@
     <TextView
         android:id="@+id/adapter_name"
         android:text="@string/adapter_name"
+        android:layout_marginTop="5dp"
         android:textColor="#795548"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -52,6 +53,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="45dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -63,19 +65,36 @@
             android:layout_alignParentRight="true"
             app:srcCompat="@drawable/b_a" />
 
-
+         <LinearLayout
+             android:orientation="horizontal"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content">
 
         <TextView
-            android:layout_marginLeft="25dp"
+            android:id="@+id/sell_list_view"
             android:text="@string/sell"
             android:textStyle="bold"
             android:textColor="#795548"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+             <TextView
+                 android:id="@+id/order_list_view"
+                 android:layout_marginLeft="20dp"
+                 android:text="@string/order"
+                 android:textStyle="bold"
+                 android:textColor="#795548"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" />
 
 
-    </LinearLayout>
+
+         </LinearLayout>
+
+
+
+
+</LinearLayout>
 
 
 

@@ -7,6 +7,8 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.v4.app.INotificationSideChannel;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,18 +53,21 @@ public class BookAdapter extends CursorAdapter {
         int authorIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_AUTHOR);
         final int quantityIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_QUANTITY);
         int imageIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_IMAGE);
+        int supPhone = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER);
 
         String name = cursor.getString(nameIndex);
         String author = cursor.getString(authorIndex);
         int quantity = cursor.getInt(quantityIndex);
         int image = cursor.getInt(imageIndex);
+        final String phone = cursor.getString(supPhone);
 
         nameView.setText(name);
         authorView.setText(author);
         numberView.setText(Integer.toString(quantity));
         imageView.setImageResource(image);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        TextView sellText = view.findViewById(R.id.sell_list_view);
+        sellText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int quantity = cursor.getInt(quantityIndex);
@@ -73,6 +78,19 @@ public class BookAdapter extends CursorAdapter {
                     numberView.setText(Integer.toString(quantity));
 
                 }
+            }
+        });
+
+        TextView orderText = view.findViewById(R.id.order_list_view);
+        orderText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + phone));
+                if (intent.resolveActivity(context.getPackageManager()) != null) {
+                    context.startActivity(intent);
+                }
+
             }
         });
         
