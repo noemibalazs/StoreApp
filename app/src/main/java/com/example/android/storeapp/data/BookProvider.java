@@ -81,7 +81,7 @@ public class BookProvider extends ContentProvider {
         if (author == null){
             throw  new IllegalArgumentException("Book requires an author");
         }
-        Integer price = values.getAsInteger(BookEntry.BOOK_COLUMN_PRICE);
+        Double price = values.getAsDouble(BookEntry.BOOK_COLUMN_PRICE);
         if (price <0 && price!=null){
             throw new IllegalArgumentException("Book requires a price");
         }
@@ -146,7 +146,7 @@ public class BookProvider extends ContentProvider {
             }
         }
         if (values.containsKey(BookEntry.BOOK_COLUMN_PRICE)){
-            Integer price = values.getAsInteger(BookEntry.BOOK_COLUMN_PRICE);
+            Double price = values.getAsDouble(BookEntry.BOOK_COLUMN_PRICE);
             if (price<0 && price!=null){
                 throw new IllegalArgumentException("Book requires a price");
             }

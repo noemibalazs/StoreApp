@@ -70,14 +70,14 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
             getLoaderManager().initLoader(BOOK_LOADER_MN, null, this);
         }
 
-        mNameBook = findViewById(id.book_name);
-        mAuthorBook = findViewById(id.book_author);
-        mPriceBook = findViewById(id.book_price);
-        mQuantityBook = findViewById(id.book_quantity);
-        mSupplierName = findViewById(id.sup_name);
-        mSupplierEmail = findViewById(id.sup_email);
-        mSupplierPhone = findViewById(id.sup_phone);
-        mImageSpinner = findViewById(id.image_spinner);
+        mNameBook = findViewById(R.id.book_name);
+        mAuthorBook = findViewById(R.id.book_author);
+        mPriceBook = findViewById(R.id.book_price);
+        mQuantityBook = findViewById(R.id.book_quantity);
+        mSupplierName = findViewById(R.id.sup_name);
+        mSupplierEmail = findViewById(R.id.sup_email);
+        mSupplierPhone = findViewById(R.id.sup_phone);
+        mImageSpinner = findViewById(R.id.image_spinner);
 
         mNameBook.setOnTouchListener(mTouch);
         mAuthorBook.setOnTouchListener(mTouch);
@@ -95,21 +95,26 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
     private void setupSpinner(){
 
-       ArrayList<BookImage> imagesList = new ArrayList<BookImage>();
+       ArrayList<Integer> imagesList = new ArrayList<Integer>();
 
-       imagesList.add(new BookImage( R.drawable.book));
-       imagesList.add(new BookImage( R.drawable.ebook));
-       imagesList.add(new BookImage( R.drawable.b_a));
+       imagesList.add(R.drawable.book);
+       imagesList.add(R.drawable.ebook);
+       imagesList.add(R.drawable.b_a);
 
        BookImageAdapter bookImageAdapter = new BookImageAdapter(getApplicationContext(), imagesList);
        mImageSpinner.setAdapter(bookImageAdapter);
 
-
        mImageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               Toast.makeText(BookEditorActivity.this, "selected", Toast.LENGTH_SHORT).show();
-
+              int selection =(Integer)parent.getItemAtPosition(position);
+              if (selection == BookEntry.BOOK_BOOK){
+                  mImage = BookEntry.BOOK_BOOK;
+              } else if (selection == BookEntry.BOOK_AUDIO){
+                  mImage = BookEntry.BOOK_AUDIO;
+              } else if (selection == BookEntry.BOOK_EBOOK){
+                  mImage = BookEntry.BOOK_EBOOK;
+              }
            }
 
            @Override
@@ -132,7 +137,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         if (mCurrentUri == null){
-            MenuItem menuItem = menu.findItem(id.edit_delete_menu);
+            MenuItem menuItem = menu.findItem(R.id.edit_delete_menu);
             menuItem.setVisible(false);
         }
         return true;
@@ -157,11 +162,11 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case id.edit_save_menu:
+            case R.id.edit_save_menu:
                 saveBook();
                 finish();
                 return true;
-            case id.edit_delete_menu:
+            case R.id.edit_delete_menu:
                 showsDeleteWarningDialog();
                 return true;
             case android.R.id.home:
@@ -231,6 +236,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
            } else {
                Toast.makeText(this, getString(string.book_updated), Toast.LENGTH_SHORT).show();
            }
+
         }
     }
 

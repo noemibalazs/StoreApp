@@ -39,6 +39,15 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
 
         getApplicationContext().deleteDatabase("library.db");
 
+        FloatingActionButton fb = findViewById(R.id.fab);
+        fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookActivity.this, BookEditorActivity.class);
+                startActivity(intent);
+            }
+        });
+
         ListView listView = findViewById(R.id.list_view);
 
         View emptyView = findViewById(R.id.empty_view);
@@ -58,14 +67,6 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         });
 
-        FloatingActionButton fb = (FloatingActionButton)findViewById(R.id.fab);
-        fb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BookActivity.this, BookEditorActivity.class);
-                startActivity(intent);
-            }
-        });
         getLoaderManager().initLoader(BOOK_LOADER, null,this );
     }
 

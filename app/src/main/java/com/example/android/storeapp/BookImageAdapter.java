@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -15,26 +16,45 @@ import java.util.ArrayList;
  * Created by Noemi on 1/13/2018.
  */
 
-public class BookImageAdapter extends ArrayAdapter<BookImage> {
+public class BookImageAdapter extends BaseAdapter {
 
-    public BookImageAdapter(Context context, ArrayList<BookImage>image){
-        super(context, 0, image);
+    Context context;
+    ArrayList<Integer> arrayList;
+
+    public BookImageAdapter(Context context, ArrayList<Integer>imageList){
+
+        this.context = context;
+        arrayList = imageList;
+    }
+
+    @Override
+    public int getCount() {
+        return arrayList.size();
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return arrayList.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return arrayList.get(i);
     }
 
 
     @Override
     public View getView(int position,  View convertView,  ViewGroup parent) {
 
-        View listItemView = convertView;
-        if (listItemView == null){
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.image_item, parent, false);
+        if (convertView == null){
+            convertView = LayoutInflater.from(context).inflate(R.layout.image_item, parent, false);
         }
 
-        BookImage bImage = getItem(position);
+        Integer bImage = arrayList.get(position);
 
-        ImageView insertImage = (ImageView)listItemView.findViewById(R.id.image_list_item);
-        insertImage.setImageResource(bImage.getImage());
+        ImageView insertImage = (ImageView)convertView.findViewById(R.id.image_list_item);
+        insertImage.setImageResource(bImage);
 
-        return listItemView;
+        return convertView;
     }
 }
