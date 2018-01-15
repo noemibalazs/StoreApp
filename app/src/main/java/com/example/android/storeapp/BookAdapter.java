@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.health.PackageHealthStats;
 import android.provider.ContactsContract;
 import android.support.v4.app.INotificationSideChannel;
 import android.view.LayoutInflater;
@@ -48,23 +49,28 @@ public class BookAdapter extends CursorAdapter {
         TextView authorView = view.findViewById(R.id.adapter_author);
         final TextView numberView = view.findViewById(R.id.adapter_number);
         ImageView imageView = view.findViewById(R.id.adapter_image);
+        final TextView phoneView = view.findViewById(R.id.adapter_phone);
 
         int nameIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_TITLE);
         int authorIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_AUTHOR);
         final int quantityIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_QUANTITY);
         int imageIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_IMAGE);
-        int supPhone = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER);
+        int phoneIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER);
+
 
         String name = cursor.getString(nameIndex);
         String author = cursor.getString(authorIndex);
         int quantity = cursor.getInt(quantityIndex);
         int image = cursor.getInt(imageIndex);
-        final String phone = cursor.getString(supPhone);
+        String phone = cursor.getString(phoneIndex);
+
 
         nameView.setText(name);
         authorView.setText(author);
         numberView.setText(Integer.toString(quantity));
         imageView.setImageResource(image);
+        phoneView.setText(phone);
+
 
         TextView sellText = view.findViewById(R.id.sell_list_view);
         sellText.setOnClickListener(new View.OnClickListener() {
@@ -81,12 +87,12 @@ public class BookAdapter extends CursorAdapter {
             }
         });
 
-        TextView orderText = view.findViewById(R.id.order_list_view);
+        final TextView orderText = view.findViewById(R.id.order_list_view);
         orderText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + phone));
+                intent.setData(Uri.parse("tel:" + phoneView.getText()));
                 if (intent.resolveActivity(context.getPackageManager()) != null) {
                     context.startActivity(intent);
                 }

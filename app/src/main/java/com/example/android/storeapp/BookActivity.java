@@ -78,7 +78,7 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         values.put(BookEntry.BOOK_COLUMN_QUANTITY, 1);
         values.put(BookEntry.BOOK_COLUMN_SUPPLIER_NAME, "Amazon");
         values.put(BookEntry.BOOK_COLUMN_SUPPLIER_EMAIL, "support@amazon.com");
-        values.put(BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER, 121);
+        values.put(BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER, "+12062662992");
         values.put(BookEntry.BOOK_COLUMN_IMAGE, BookEntry.BOOK_BOOK);
 
         Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
@@ -116,6 +116,7 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
                                              BookEntry.BOOK_COLUMN_TITLE,
                                             BookEntry.BOOK_COLUMN_AUTHOR,
                                             BookEntry.BOOK_COLUMN_QUANTITY,
+                                            BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER,
                                             BookEntry.BOOK_COLUMN_IMAGE};
         return new CursorLoader(this, BookEntry.CONTENT_URI, projection, null, null, null);
 
