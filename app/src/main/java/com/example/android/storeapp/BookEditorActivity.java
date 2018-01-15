@@ -322,7 +322,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
             String nameB = cursor.getString(name);
             String authorB = cursor.getString(author);
-            int priceB= cursor.getInt(price);
+            double priceB= cursor.getDouble(price);
             int quantityB = cursor.getInt(quantity);
             String supplierB = cursor.getString(supplier);
             String emailB = cursor.getString(email);
@@ -331,7 +331,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
             mNameBook.setText(nameB);
             mAuthorBook.setText(authorB);
-            mPriceBook.setText(Integer.toString(priceB));
+            mPriceBook.setText(Double.toString(priceB));
             mQuantityBook.setText(Integer.toString(quantityB));
             mSupplierName.setText(supplierB);
             mSupplierEmail.setText(emailB);
