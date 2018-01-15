@@ -49,13 +49,34 @@
 
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/adapter_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:scaleType="centerCrop"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_alignParentRight="true"
-        app:srcCompat="@drawable/b_a" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/adapter_image"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="centerCrop"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/b_a" />
+
+
+
+        <TextView
+            android:layout_marginLeft="25dp"
+            android:text="@string/sell"
+            android:textStyle="bold"
+            android:textColor="#795548"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+    </LinearLayout>
+
 
 
 </RelativeLayout>

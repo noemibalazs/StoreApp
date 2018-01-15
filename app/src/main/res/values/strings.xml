@@ -37,7 +37,7 @@
 
     <string name="book_saved">Book saved</string>
 
-    <string name="error_with_saving_book"></string>
+    <string name="error_with_saving_book">Error with saving book</string>
 
     <string name="book_update_failed">Book update failed</string>
 
@@ -58,5 +58,7 @@
     <string name="discard">Discard</string>
 
     <string name="keep_editing">Keep editing</string>
+
+    <string name="sell">Sell</string>
 
 </resources>
