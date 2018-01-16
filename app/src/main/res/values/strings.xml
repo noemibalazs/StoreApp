@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Storing App</string>
+    <string name="app_name">Store App</string>
 
     <string name="get_started_by_adding_a_book">Get started by adding a book!</string>
 
@@ -43,7 +43,7 @@
 
     <string name="book_update_failed">Book update failed</string>
 
-    <string name="book_updated">Book_updated</string>
+    <string name="book_updated">Book updated</string>
 
     <string name="error_with_deleting_a_book">Error with deleting a book</string>
 

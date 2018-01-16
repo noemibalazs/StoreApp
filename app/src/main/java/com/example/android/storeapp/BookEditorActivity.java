@@ -1,10 +1,10 @@
 package com.example.android.storeapp;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.app.LoaderManager;
 import android.support.v4.app.NavUtils;
@@ -54,7 +54,6 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,34 +94,35 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
     private void setupSpinner(){
 
-       ArrayList<Integer> imagesList = new ArrayList<Integer>();
+        ArrayList<Integer> imagesList = new ArrayList<>();
 
-       imagesList.add(R.drawable.book);
-       imagesList.add(R.drawable.ebook);
-       imagesList.add(R.drawable.b_a);
+        imagesList.add(drawable.book);
+        imagesList.add(drawable.b_a);
+        imagesList.add(drawable.ebook);
 
        BookImageAdapter bookImageAdapter = new BookImageAdapter(getApplicationContext(), imagesList);
        mImageSpinner.setAdapter(bookImageAdapter);
 
-       mImageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-           @Override
-           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-              int selection =(Integer)parent.getItemAtPosition(position);
-              if (selection == BookEntry.BOOK_BOOK){
-                  mImage = BookEntry.BOOK_BOOK;
-              } else if (selection == BookEntry.BOOK_AUDIO){
-                  mImage = BookEntry.BOOK_AUDIO;
-              } else if (selection == BookEntry.BOOK_EBOOK){
-                  mImage = BookEntry.BOOK_EBOOK;
-              }
-           }
 
-           @Override
-           public void onNothingSelected(AdapterView<?> parent) {
-               mImage = BookEntry.BOOK_BOOK;
+        mImageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int selection = (int) parent.getItemAtPosition(position);
+                if (selection == BookEntry.BOOK_BOOK){
+                    mImage = BookEntry.BOOK_BOOK;
+                } else if (selection == BookEntry.BOOK_AUDIO){
+                    mImage = BookEntry.BOOK_AUDIO;
+                } else if (selection == BookEntry.BOOK_EBOOK){
+                    mImage = BookEntry.BOOK_EBOOK;
+                }
+            }
 
-           }
-       });
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                mImage = BookEntry.BOOK_BOOK;
+
+            }
+        });
 
     }
 
@@ -212,7 +212,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         }
         values.put(BookEntry.BOOK_COLUMN_PRICE, price);
         int quantity = 0;
-        if (TextUtils.isEmpty(bookQuantity)){
+        if (!TextUtils.isEmpty(bookQuantity)){
             quantity = Integer.parseInt(bookQuantity);
         }
         values.put(BookEntry.BOOK_COLUMN_QUANTITY, quantity);
@@ -305,6 +305,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         return new CursorLoader(this, mCurrentUri, projection, null, null, null);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         if (cursor == null || cursor.getCount()<1){

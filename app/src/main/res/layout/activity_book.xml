@@ -9,6 +9,8 @@
     <ListView
         android:id="@+id/list_view"
         android:padding="16dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

@@ -7,8 +7,6 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -59,6 +57,7 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Intent newIntent = new Intent(BookActivity.this, BookEditorActivity.class);
                 Uri currentUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
                 newIntent.setData(currentUri);
@@ -75,7 +74,7 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         values.put(BookEntry.BOOK_COLUMN_TITLE, "Inferno");
         values.put(BookEntry.BOOK_COLUMN_AUTHOR, "Dan Brown");
         values.put(BookEntry.BOOK_COLUMN_PRICE, 9);
-        values.put(BookEntry.BOOK_COLUMN_QUANTITY, 1);
+        values.put(BookEntry.BOOK_COLUMN_QUANTITY, 9);
         values.put(BookEntry.BOOK_COLUMN_SUPPLIER_NAME, "Amazon");
         values.put(BookEntry.BOOK_COLUMN_SUPPLIER_EMAIL, "support@amazon.com");
         values.put(BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER, "+12062662992");
