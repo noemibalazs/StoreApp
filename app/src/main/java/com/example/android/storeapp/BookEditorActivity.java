@@ -41,6 +41,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
     private EditText mSupplierPhone;
     private Spinner mImageSpinner;
 
+
     private int mImage = BookEntry.BOOK_BOOK;
     private Uri mCurrentUri;
     private static final int BOOK_LOADER_MN = 1;
@@ -89,7 +90,6 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
         setupSpinner();
 
-
     }
 
     private void setupSpinner(){
@@ -112,14 +112,14 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
                     mImage = BookEntry.BOOK_BOOK;
                 } else if (selection == BookEntry.BOOK_AUDIO){
                     mImage = BookEntry.BOOK_AUDIO;
-                } else if (selection == BookEntry.BOOK_EBOOK){
+                } else {
                     mImage = BookEntry.BOOK_EBOOK;
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                mImage = BookEntry.BOOK_BOOK;
+                mImage = BookEntry.BOOK_EBOOK;
 
             }
         });
@@ -340,18 +340,16 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
             switch (imageB){
                 case BookEntry.BOOK_BOOK:
-                    mImageSpinner.setSelection(BookEntry.BOOK_BOOK);
+                    mImageSpinner.setSelection(1);
                     break;
                 case BookEntry.BOOK_AUDIO:
-                    mImageSpinner.setSelection(BookEntry.BOOK_AUDIO);
+                    mImageSpinner.setSelection(2);
                     break;
-                case BookEntry.BOOK_EBOOK:
-                    mImageSpinner.setSelection(BookEntry.BOOK_EBOOK);
+                default:
+                    mImageSpinner.setSelection(0);
                     break;
             }
-
         }
-
     }
 
     @Override
@@ -363,7 +361,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         mSupplierName.setText("");
         mSupplierEmail.setText("");
         mSupplierPhone.setText("");
-        mImageSpinner.setSelection(BookEntry.BOOK_BOOK);
+        mImageSpinner.setSelection(0);
 
 
     }

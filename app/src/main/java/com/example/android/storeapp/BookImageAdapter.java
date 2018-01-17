@@ -24,20 +24,20 @@ public class BookImageAdapter extends BaseAdapter {
         arrayList = imageList;
     }
 
-
     @Override
     public int getCount() {
         return arrayList.size();
+
     }
 
     @Override
-    public Object getItem(int i) {
-        return arrayList.get(i);
+    public Object getItem(int position) {
+        return arrayList.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
@@ -45,7 +45,6 @@ public class BookImageAdapter extends BaseAdapter {
         if (convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.image_item, parent, false);
         }
-
         Integer bImage = arrayList.get(position);
 
         ImageView insertImage = convertView.findViewById(R.id.image_list_item);
