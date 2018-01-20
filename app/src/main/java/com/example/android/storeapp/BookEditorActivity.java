@@ -199,6 +199,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         if ( mCurrentUri == null && TextUtils.isEmpty(bookName)&& TextUtils.isEmpty(bookAuthor) && TextUtils.isEmpty(bookPrice) &&
                 TextUtils.isEmpty(bookQuantity) && TextUtils.isEmpty(bookSupName) && TextUtils.isEmpty(bookSupEmail) &&
                 TextUtils.isEmpty(bookSupPhone) && mImage == BookEntry.BOOK_BOOK){
+            Toast.makeText(this, getString(R.string.cannot_save_a_blank_item), Toast.LENGTH_SHORT).show();
             return;
         }
 

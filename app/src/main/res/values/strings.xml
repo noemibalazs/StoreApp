@@ -65,4 +65,6 @@
 
     <string name="order">Order</string>
 
+    <string name="cannot_save_a_blank_item">Cannot save a blank item</string>
+
 </resources>
