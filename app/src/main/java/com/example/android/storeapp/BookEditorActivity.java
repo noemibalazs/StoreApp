@@ -230,7 +230,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
             }
         }
         else {
-           int newBook = getContentResolver().update(BookEntry.CONTENT_URI, values, null, null);
+           int newBook = getContentResolver().update(mCurrentUri, values, null, null);
            if (newBook == 0){
                Toast.makeText(this, getString(string.book_update_failed), Toast.LENGTH_SHORT).show();
            } else {
