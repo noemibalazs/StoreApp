@@ -340,10 +340,10 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
             mSupplierPhone.setText(phoneB);
 
             switch (imageB){
-                case BookEntry.BOOK_BOOK:
+                case BookEntry.BOOK_AUDIO:
                     mImageSpinner.setSelection(1);
                     break;
-                case BookEntry.BOOK_AUDIO:
+                case BookEntry.BOOK_EBOOK:
                     mImageSpinner.setSelection(2);
                     break;
                 default:
