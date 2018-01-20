@@ -27,7 +27,6 @@ public class BookImageAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         return arrayList.size();
-
     }
 
     @Override

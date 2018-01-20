@@ -242,7 +242,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
     private void deleteBook(){
         if (mCurrentUri != null){
-       int deleteRow = getContentResolver().delete(BookEntry.CONTENT_URI, null, null );
+       int deleteRow = getContentResolver().delete(mCurrentUri, null, null );
         if (deleteRow == 0) {
             Toast.makeText(this, getString(string.error_with_deleting_a_book), Toast.LENGTH_SHORT).show();
         } else {
