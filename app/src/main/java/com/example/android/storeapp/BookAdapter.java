@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +45,7 @@ public class BookAdapter extends CursorAdapter {
         final TextView numberView = view.findViewById(R.id.adapter_quantity_list);
         ImageView imageView = view.findViewById(R.id.adapter_image);
         final TextView phoneView = view.findViewById(R.id.adapter_phone);
+        TextView priceView = view.findViewById(R.id.adapter_price_list);
 
         int idIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_ID);
         int nameIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_TITLE);
@@ -53,6 +53,7 @@ public class BookAdapter extends CursorAdapter {
         int quantityIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_QUANTITY);
         int imageIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_IMAGE);
         int phoneIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER);
+        int priceIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_PRICE);
 
         final int id = cursor.getInt(idIndex);
         String name = cursor.getString(nameIndex);
@@ -60,12 +61,14 @@ public class BookAdapter extends CursorAdapter {
         int quantity = cursor.getInt(quantityIndex);
         int image = cursor.getInt(imageIndex);
         String phone = cursor.getString(phoneIndex);
+        int price = cursor.getInt(priceIndex);
 
         nameView.setText(name);
         authorView.setText(author);
         numberView.setText(Integer.toString(quantity));
         imageView.setImageResource(image);
         phoneView.setText(phone);
+        priceView.setText(Integer.toString(price));
 
         Button sellText = view.findViewById(R.id.sell_list_view);
         sellText.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +93,6 @@ public class BookAdapter extends CursorAdapter {
                     else {
                         Toast.makeText(context, "Error update book", Toast.LENGTH_SHORT).show();
                     }
-
                 }
             }
         });
@@ -104,11 +106,7 @@ public class BookAdapter extends CursorAdapter {
                 if (intent.resolveActivity(context.getPackageManager()) != null) {
                     context.startActivity(intent);
                 }
-
             }
         });
-        
-
-
     }
 }

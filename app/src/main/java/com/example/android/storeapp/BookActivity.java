@@ -20,7 +20,6 @@ import android.widget.ListView;
 
 import com.example.android.storeapp.data.BookContract.BookEntry;
 
-import java.io.ByteArrayOutputStream;
 
 
 public class BookActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
@@ -29,12 +28,10 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
     private static final int BOOK_LOADER = 1;
     private static final String LOG_TAG = BookActivity.class.getSimpleName();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
-
 
         FloatingActionButton fb = findViewById(R.id.fab);
         fb.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +84,6 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         Log.v(LOG_TAG, deletedRows + " rows deleted from database");
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.book_menu, menu);
@@ -115,6 +111,7 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
                                             BookEntry.BOOK_COLUMN_AUTHOR,
                                             BookEntry.BOOK_COLUMN_QUANTITY,
                                             BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER,
+                                            BookEntry.BOOK_COLUMN_PRICE,
                                             BookEntry.BOOK_COLUMN_IMAGE};
         return new CursorLoader(this, BookEntry.CONTENT_URI, projection, null, null, null);
 

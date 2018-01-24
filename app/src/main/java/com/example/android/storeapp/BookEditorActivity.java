@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -40,7 +41,10 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
     private EditText mSupplierEmail;
     private EditText mSupplierPhone;
     private Spinner mImageSpinner;
-
+    private Button mOrder;
+    private Button mPlus;
+    private Button mMinus;
+    private int mQuantity;
 
     private int mImage = BookEntry.BOOK_BOOK;
     private Uri mCurrentUri;
@@ -78,6 +82,9 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         mSupplierEmail = findViewById(R.id.sup_email);
         mSupplierPhone = findViewById(R.id.sup_phone);
         mImageSpinner = findViewById(R.id.image_spinner);
+        mOrder = findViewById(R.id.button_order_settings);
+        mPlus = findViewById(R.id.plus);
+        mMinus = findViewById(R.id.minus);
 
         mNameBook.setOnTouchListener(mTouch);
         mAuthorBook.setOnTouchListener(mTouch);
@@ -87,10 +94,53 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         mSupplierEmail.setOnTouchListener(mTouch);
         mSupplierPhone.setOnTouchListener(mTouch);
         mImageSpinner.setOnTouchListener(mTouch);
+        mOrder.setOnTouchListener(mTouch);
+        mPlus.setOnTouchListener(mTouch);
+        mMinus.setOnTouchListener(mTouch);
 
         setupSpinner();
 
-    }
+        mOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + mSupplierPhone.getText().toString()));
+                if (intent.resolveActivity(getApplicationContext().getPackageManager()) != null) {
+                    getApplicationContext().startActivity(intent);
+                }
+            }
+        });
+
+        mPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String quantity = mQuantityBook.getText().toString();
+                if (Integer.parseInt(quantity) == 100){
+                    Toast.makeText(BookEditorActivity.this, getString(string.are_you_sure), Toast.LENGTH_SHORT).show();
+                } else {
+                    mQuantity = Integer.parseInt(quantity);
+                    mQuantity++;
+                    mQuantityBook.setText(String.valueOf(mQuantity));
+                }
+            }
+        });
+
+        mMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String quantity = mQuantityBook.getText().toString();
+                if (Integer.parseInt(quantity) == 0){
+                    Toast.makeText(BookEditorActivity.this,getString(string.minus_value), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else {
+                    mQuantity = Integer.parseInt(quantity);
+                    mQuantity--;
+                    mQuantityBook.setText(String.valueOf(mQuantity));
+                }
+            }
+        });
+        }
 
     private void setupSpinner(){
 
@@ -102,7 +152,6 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
        BookImageAdapter bookImageAdapter = new BookImageAdapter(getApplicationContext(), imagesList);
        mImageSpinner.setAdapter(bookImageAdapter);
-
 
         mImageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -125,7 +174,6 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         });
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -196,13 +244,6 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         String bookSupEmail = mSupplierEmail.getText().toString().trim();
         String bookSupPhone = mSupplierPhone.getText().toString().trim();
 
-        if ( mCurrentUri == null && TextUtils.isEmpty(bookName)&& TextUtils.isEmpty(bookAuthor) && TextUtils.isEmpty(bookPrice) &&
-                TextUtils.isEmpty(bookQuantity) && TextUtils.isEmpty(bookSupName) && TextUtils.isEmpty(bookSupEmail) &&
-                TextUtils.isEmpty(bookSupPhone) && mImage == BookEntry.BOOK_BOOK){
-            Toast.makeText(this, getString(R.string.cannot_save_a_blank_item), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
         ContentValues values = new ContentValues();
 
         values.put(BookEntry.BOOK_COLUMN_TITLE, bookName);
@@ -237,7 +278,6 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
            } else {
                Toast.makeText(this, getString(string.book_updated), Toast.LENGTH_SHORT).show();
            }
-
         }
     }
 
@@ -363,7 +403,6 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         mSupplierEmail.setText("");
         mSupplierPhone.setText("");
         mImageSpinner.setSelection(0);
-
 
     }
 }

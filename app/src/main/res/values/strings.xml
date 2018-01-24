@@ -21,6 +21,10 @@
 
     <string name="overview">Overview</string>
 
+    <string name="update_quantity">Update</string>
+
+    <string name="order_edit">Order</string>
+
     <string name="supplier_info">Supplier info</string>
 
     <string name="image">Image</string>
@@ -66,5 +70,14 @@
     <string name="order">Order</string>
 
     <string name="cannot_save_a_blank_item">Cannot save a blank item</string>
+
+    <string name="adapter_price">Price: </string>
+
+    <string name="are_you_sure">Are you sure to wanna add one more book?</string>
+    
+    <string name="you_cannot_decrease_quantity">You cannot decrease quantity!</string>
+
+    <string name="minus_value">You cannot add minus value!</string>
+
 
 </resources>
