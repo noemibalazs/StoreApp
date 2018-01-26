@@ -17,7 +17,6 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.TextureView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -245,20 +244,12 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         String bookSupEmail = mSupplierEmail.getText().toString().trim();
         String bookSupPhone = mSupplierPhone.getText().toString().trim();
 
-        if (TextUtils.isEmpty(bookName)){
-            Toast.makeText(this,getString(string.please_add_a_book_name), Toast.LENGTH_SHORT).show();}
-        if (TextUtils.isEmpty(bookAuthor)){
-            Toast.makeText(this,getString(string.please_add_a_book_author), Toast.LENGTH_SHORT).show();}
-        if (TextUtils.isEmpty(bookPrice)){
-            Toast.makeText(this,getString(string.please_add_price), Toast.LENGTH_SHORT).show();}
-        if (TextUtils.isEmpty(bookQuantity)){
-            Toast.makeText(this, getString(string.please_add_quantity), Toast.LENGTH_SHORT).show();}
-        if (TextUtils.isEmpty(bookSupName)){
-            Toast.makeText(this,getString(string.please_add_sup_name), Toast.LENGTH_SHORT).show();}
-        if (TextUtils.isEmpty(bookSupEmail)){
-            Toast.makeText(this,getString(string.pleae_add_sup_email), Toast.LENGTH_SHORT).show();}
-        if (TextUtils.isEmpty(bookSupPhone)){
-            Toast.makeText(this,getString(string.please_add_sup_phone), Toast.LENGTH_SHORT).show();}
+        if (mCurrentUri  == null && TextUtils.isEmpty(bookName)&& TextUtils.isEmpty(bookAuthor) &&
+                TextUtils.isEmpty(bookPrice) && TextUtils.isEmpty(bookQuantity) &&
+                TextUtils.isEmpty(bookSupName) && TextUtils.isEmpty(bookSupEmail) && TextUtils.isEmpty(bookSupPhone) &&
+                mImage == BookEntry.BOOK_BOOK){
+            return;
+        }
 
         ContentValues values = new ContentValues();
 

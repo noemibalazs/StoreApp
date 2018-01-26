@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".BookEditorActivity"
             android:label="@string/settings">
             <meta-data
@@ -27,6 +28,8 @@
             android:authorities="com.example.android.storeapp"
             android:name=".data.BookProvider"
             android:exported="false"/>
+
+
     </application>
 
 </manifest>
