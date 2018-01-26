@@ -79,5 +79,21 @@
 
     <string name="minus_value">You cannot add minus value!</string>
 
+    <string name="adding_a_new_book">Add a book</string>
+
+    <string name="please_add_a_book_name">Please add a book name</string>
+
+    <string name="please_add_a_book_author">Please add a book author</string>
+
+    <string name="please_add_price">Are you sure about price</string>
+
+    <string name="please_add_quantity">Are you sure about quantity</string>
+
+    <string name="please_add_sup_name">Please add a supplier name</string>
+
+    <string name="pleae_add_sup_email">Please add supplier email address</string>
+
+    <string name="please_add_sup_phone">Please add supplier phone number</string>
+
 
 </resources>

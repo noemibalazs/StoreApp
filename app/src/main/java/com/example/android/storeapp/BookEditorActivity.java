@@ -17,6 +17,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -244,20 +245,36 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         String bookSupEmail = mSupplierEmail.getText().toString().trim();
         String bookSupPhone = mSupplierPhone.getText().toString().trim();
 
+        if (TextUtils.isEmpty(bookName)){
+            Toast.makeText(this,getString(string.please_add_a_book_name), Toast.LENGTH_SHORT).show();}
+        if (TextUtils.isEmpty(bookAuthor)){
+            Toast.makeText(this,getString(string.please_add_a_book_author), Toast.LENGTH_SHORT).show();}
+        if (TextUtils.isEmpty(bookPrice)){
+            Toast.makeText(this,getString(string.please_add_price), Toast.LENGTH_SHORT).show();}
+        if (TextUtils.isEmpty(bookQuantity)){
+            Toast.makeText(this, getString(string.please_add_quantity), Toast.LENGTH_SHORT).show();}
+        if (TextUtils.isEmpty(bookSupName)){
+            Toast.makeText(this,getString(string.please_add_sup_name), Toast.LENGTH_SHORT).show();}
+        if (TextUtils.isEmpty(bookSupEmail)){
+            Toast.makeText(this,getString(string.pleae_add_sup_email), Toast.LENGTH_SHORT).show();}
+        if (TextUtils.isEmpty(bookSupPhone)){
+            Toast.makeText(this,getString(string.please_add_sup_phone), Toast.LENGTH_SHORT).show();}
+
         ContentValues values = new ContentValues();
 
         values.put(BookEntry.BOOK_COLUMN_TITLE, bookName);
         values.put(BookEntry.BOOK_COLUMN_AUTHOR, bookAuthor);
+
         double price = 0.00;
         if (!TextUtils.isEmpty(bookPrice)){
-            price = Double.parseDouble(bookPrice);
-        }
+            price = Double.parseDouble(bookPrice);}
         values.put(BookEntry.BOOK_COLUMN_PRICE, price);
+
         int quantity = 0;
         if (!TextUtils.isEmpty(bookQuantity)){
-            quantity = Integer.parseInt(bookQuantity);
-        }
+            quantity = Integer.parseInt(bookQuantity);}
         values.put(BookEntry.BOOK_COLUMN_QUANTITY, quantity);
+
         values.put(BookEntry.BOOK_COLUMN_SUPPLIER_NAME, bookSupName);
         values.put(BookEntry.BOOK_COLUMN_SUPPLIER_EMAIL, bookSupEmail);
         values.put(BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER, bookSupPhone);

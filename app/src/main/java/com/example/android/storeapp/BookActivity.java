@@ -96,6 +96,10 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
            case R.id.add_a_book:
                insertBook();
                return true;
+           case R.id.adding_a_new_book:
+               Intent intent = new Intent(BookActivity.this, BookEditorActivity.class);
+               startActivity(intent);
+               return true;
            case R.id.delete_all_books:
                deleteAllBooks();
                return true;
