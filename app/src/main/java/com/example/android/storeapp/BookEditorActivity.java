@@ -411,6 +411,5 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         mSupplierEmail.setText("");
         mSupplierPhone.setText("");
         mImageSpinner.setSelection(0);
-
     }
 }

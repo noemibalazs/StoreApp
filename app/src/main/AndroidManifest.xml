@@ -16,20 +16,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".BookEditorActivity"
-            android:label="@string/settings">
+        <activity
+            android:name=".BookEditorActivity"
+            android:label="@string/add_a_book">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.storeapp.BookActivity" />
         </activity>
 
         <provider
-            android:authorities="com.example.android.storeapp"
             android:name=".data.BookProvider"
-            android:exported="false"/>
+            android:authorities="com.example.android.storeapp"
+            android:exported="false" />
 
-
+        <activity android:name=".BookDetailActivity"
+            android:label="@string/book_details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.storeapp.BookActivity" />
+        </activity>
     </application>
 
 </manifest>

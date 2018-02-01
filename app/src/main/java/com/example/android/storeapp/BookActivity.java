@@ -54,7 +54,7 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent newIntent = new Intent(BookActivity.this, BookEditorActivity.class);
+                Intent newIntent = new Intent(BookActivity.this, BookDetailActivity.class);
                 Uri currentUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
                 newIntent.setData(currentUri);
                 startActivity(newIntent);

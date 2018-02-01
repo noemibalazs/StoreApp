@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +46,6 @@ public class BookAdapter extends CursorAdapter {
         ImageView imageView = view.findViewById(R.id.adapter_image);
         final TextView phoneView = view.findViewById(R.id.adapter_phone);
         TextView priceView = view.findViewById(R.id.adapter_price_list);
-        RelativeLayout relView = view.findViewById(R.id.parent_view);
 
         int idIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_ID);
         int nameIndex = cursor.getColumnIndex(BookEntry.BOOK_COLUMN_TITLE);
@@ -72,15 +70,6 @@ public class BookAdapter extends CursorAdapter {
         phoneView.setText(phone);
         priceView.setText(Integer.toString(price));
 
-        relView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, BookEditorActivity.class);
-                Uri currentUriV = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
-                intent.setData(currentUriV);
-                context.startActivity(intent);
-            }
-        });
 
         Button sellText = view.findViewById(R.id.sell_list_view);
         sellText.setOnClickListener(new View.OnClickListener() {

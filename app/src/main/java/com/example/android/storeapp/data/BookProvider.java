@@ -11,7 +11,6 @@ import android.util.Log;
 
 import com.example.android.storeapp.data.BookContract.BookEntry;
 
-import java.sql.Blob;
 
 /**
  * Created by Noemi on 1/12/2018.

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Store App</string>
 
+    <string name="book_details">Book Details</string>
+
     <string name="get_started_by_adding_a_book">Get started by adding a book!</string>
 
     <string name="book_menu_add_a_test_book">Add a test book</string>
@@ -16,6 +18,12 @@
     <string name="adapter_author">Author</string>
 
     <string name="adapter_quantity">Quantity: </string>
+
+    <string name="adapter_sup_name">Supplier Name</string>
+
+    <string name="adapter_sup_email">Email Address</string>
+
+    <string name="adapter_sup_phone">Phone Number</string>
 
     <string name="settings">Settings</string>
 
@@ -74,7 +82,7 @@
     <string name="adapter_price">Price: </string>
 
     <string name="are_you_sure">Are you sure to wanna add one more book?</string>
-    
+
     <string name="you_cannot_decrease_quantity">You cannot decrease quantity!</string>
 
     <string name="minus_value">You cannot add minus value!</string>

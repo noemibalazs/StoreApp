@@ -6,8 +6,6 @@ import android.provider.BaseColumns;
 
 import com.example.android.storeapp.R;
 
-import java.net.PortUnreachableException;
-import java.security.PublicKey;
 
 /**
  * Created by Noemi on 1/11/2018.
