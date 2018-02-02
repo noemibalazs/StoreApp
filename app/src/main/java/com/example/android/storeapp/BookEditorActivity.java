@@ -17,7 +17,6 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.TextureView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;

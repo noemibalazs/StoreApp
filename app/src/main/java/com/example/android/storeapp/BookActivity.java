@@ -77,6 +77,7 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         values.put(BookEntry.BOOK_COLUMN_IMAGE, BookEntry.BOOK_BOOK);
 
         Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+        Log.v(LOG_TAG, "a new book was inserted" + newUri);
     }
 
     private void deleteAllBooks(){

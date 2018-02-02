@@ -8,15 +8,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.storeapp.data.BookContract.BookEntry;
 
@@ -32,7 +29,7 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
     private TextView mSupEmail;
     private TextView mSupPhone;
     private Spinner mImageSpinner;
-    private Button mOrder;
+
 
     private Uri mCurrentUri;
     private static final int BOOK_LOADER =1;
@@ -53,7 +50,6 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
         mSupEmail = findViewById(R.id.detail_sup_email);
         mSupPhone = findViewById(R.id.detail_sup_phone);
         mImageSpinner = findViewById(R.id.detail_image_spinner);
-        mOrder = findViewById(R.id.button_order_detail);
 
         Intent intent = getIntent();
         mCurrentUri = intent.getData();
@@ -61,20 +57,6 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
         setupSpinner();
 
         getLoaderManager().initLoader(BOOK_LOADER, null, this);
-
-        mOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + mSupPhone.getText().toString()));
-                if (intent.resolveActivity(getApplicationContext().getPackageManager()) != null) {
-                    getApplicationContext().startActivity(intent);
-                }
-            }
-        });
-
-
-
 
     }
 
@@ -111,11 +93,6 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
 
     }
 
-    private void deleteBook(){
-        int deletedRows = getContentResolver().delete(mCurrentUri, null, null);
-        Log.v(LOG_TAG, deletedRows + " rows deleted from database");
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_detail, menu);
@@ -124,15 +101,12 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.edit_edit:
+        int id = item.getItemId();
+        if (id == R.id.edit_edit){
                  Intent intent = new Intent(BookDetailActivity.this, BookEditorActivity.class);
                  intent.setData(mCurrentUri);
                  startActivity(intent);
                  return true;
-            case R.id.edit_delete_menu_detail:
-                deleteBook();
-                return true;
         }
         return super.onOptionsItemSelected(item);
     }
