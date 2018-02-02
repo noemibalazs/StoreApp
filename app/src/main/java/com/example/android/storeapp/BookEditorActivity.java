@@ -17,6 +17,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -253,8 +254,19 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
         ContentValues values = new ContentValues();
 
-        values.put(BookEntry.BOOK_COLUMN_TITLE, bookName);
-        values.put(BookEntry.BOOK_COLUMN_AUTHOR, bookAuthor);
+        if (!TextUtils.isEmpty(bookName)){
+            values.put(BookEntry.BOOK_COLUMN_TITLE, bookName);}
+        else {
+            Toast.makeText(this,getString(string.book_title_is_required), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!TextUtils.isEmpty(bookAuthor)){
+            values.put(BookEntry.BOOK_COLUMN_AUTHOR, bookAuthor);}
+        else {
+            Toast.makeText(this, getString(string.book_author_is_required), Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         double price = 0.00;
         if (!TextUtils.isEmpty(bookPrice)){
@@ -266,9 +278,26 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
             quantity = Integer.parseInt(bookQuantity);}
         values.put(BookEntry.BOOK_COLUMN_QUANTITY, quantity);
 
-        values.put(BookEntry.BOOK_COLUMN_SUPPLIER_NAME, bookSupName);
-        values.put(BookEntry.BOOK_COLUMN_SUPPLIER_EMAIL, bookSupEmail);
-        values.put(BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER, bookSupPhone);
+        if (!TextUtils.isEmpty(bookSupName)){
+            values.put(BookEntry.BOOK_COLUMN_SUPPLIER_NAME, bookSupName);}
+        else {
+            Toast.makeText(this, getString(string.book_supplier_name_is_required), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!TextUtils.isEmpty(bookSupEmail)){
+            values.put(BookEntry.BOOK_COLUMN_SUPPLIER_EMAIL, bookSupEmail);}
+        else {
+            Toast.makeText(this, getString(string.book_supplier_email_addredd_is_required), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!TextUtils.isEmpty(bookSupPhone)){
+            values.put(BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER, bookSupPhone);}
+        else {
+            Toast.makeText(this, getString(string.book_supplier_phone_number_is_required), Toast.LENGTH_SHORT).show();
+            return;
+        }
         values.put(BookEntry.BOOK_COLUMN_IMAGE, mImage);
 
         if (mCurrentUri == null){

@@ -103,5 +103,19 @@
 
     <string name="please_add_sup_phone">Please add supplier phone number</string>
 
+    <string name="book_title_is_required">Book title is required</string>
+
+    <string name="book_author_is_required">Book author is required</string>
+
+    <string name="book_supplier_name_is_required">Book supplier name is required</string>
+
+    <string name="book_supplier_email_addredd_is_required">Book supplier email address is required</string>
+
+    <string name="book_supplier_phone_number_is_required">Book supplier phone name is required</string>
+
+    <string name="minus">-</string>
+
+    <string name="plus">+</string>
+
 
 </resources>

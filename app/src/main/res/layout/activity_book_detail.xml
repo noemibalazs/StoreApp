@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/activity_margin"
     android:id="@+id/book_detail_ly"
     tools:context="com.example.android.storeapp.BookDetailActivity">
 
@@ -17,8 +17,8 @@
         <TextView
             android:id="@+id/overview"
             android:text="@string/overview"
-            android:paddingTop="16dp"
-            android:textColor="#795548"
+            android:paddingTop="@dimen/activity_margin"
+            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -27,13 +27,13 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:paddingLeft="40dp"
-            android:paddingTop="16dp"
+            android:paddingTop="@dimen/activity_margin"
             android:layout_height="wrap_content">
 
             <TextView
                 android:text="@string/adapter_name"
                 android:id="@+id/detail_name"
-                android:textColor="#9e9e9e"
+                android:textColor="@color/colorAccent"
                 android:textSize="16sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -41,7 +41,7 @@
             <TextView
                 android:text="@string/adapter_author"
                 android:id="@+id/detail_author"
-                android:textColor="#9e9e9e"
+                android:textColor="@color/colorAccent"
                 android:paddingTop="10dp"
                 android:textSize="16sp"
                 android:layout_width="match_parent"
@@ -50,7 +50,7 @@
             <TextView
                 android:id="@+id/detail_price"
                 android:text="@string/adapter_price"
-                android:textColor="#9e9e9e"
+                android:textColor="@color/colorAccent"
                 android:paddingTop="10dp"
                 android:textSize="16sp"
                 android:layout_width="match_parent"
@@ -59,13 +59,49 @@
             <TextView
                 android:id="@+id/detail_quantity"
                 android:text="@string/adapter_quantity"
-                android:textColor="#9e9e9e"
+                android:textColor="@color/colorAccent"
                 android:paddingTop="10dp"
                 android:textSize="16sp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
         </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/plus_detail"
+            android:text="@string/plus"
+            android:textStyle="bold"
+            android:background="@color/colorPrimary"
+            android:layout_marginStart="100dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+
+        <TextView
+            android:id="@+id/update_text_view_detail"
+            android:text="@string/update_quantity"
+            android:layout_marginStart="12dp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/minus_detail"
+            android:text="@string/minus"
+            android:background="@color/colorPrimary"
+            android:textStyle="bold"
+            android:layout_marginStart="12dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
 
     </LinearLayout>
 
@@ -77,8 +113,8 @@
         <TextView
             android:id="@+id/supplier"
             android:text="@string/supplier_info"
-            android:paddingTop="16dp"
-            android:textColor="#795548"
+            android:paddingTop="@dimen/activity_margin"
+            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -87,13 +123,13 @@
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:paddingTop="16dp"
+            android:paddingTop="@dimen/activity_margin"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/detail_sup_name"
                 android:text="@string/adapter_sup_name"
-                android:textColor="#9e9e9e"
+                android:textColor="@color/colorAccent"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -101,7 +137,7 @@
             <TextView
                 android:id="@+id/detail_sup_email"
                 android:text="@string/adapter_sup_email"
-                android:textColor="#9e9e9e"
+                android:textColor="@color/colorAccent"
                 android:paddingTop="10dp"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
@@ -110,7 +146,7 @@
             <TextView
                 android:id="@+id/detail_sup_phone"
                 android:text="@string/adapter_sup_phone"
-                android:textColor="#9e9e9e"
+                android:textColor="@color/colorAccent"
                 android:paddingTop="10dp"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
@@ -120,6 +156,15 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button_order_detail"
+        android:layout_marginStart="114dp"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:background="@color/colorPrimary"
+        android:text="@string/order_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -128,13 +173,13 @@
         <TextView
             android:id="@+id/image_settings"
             android:text="@string/image"
-            android:paddingTop="16dp"
-            android:textColor="#795548"
+            android:paddingTop="@dimen/activity_margin"
+            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <LinearLayout
-            android:paddingTop="16dp"
+            android:paddingTop="@dimen/activity_margin"
             android:paddingLeft="40dp"
             android:orientation="vertical"
             android:layout_width="0dp"

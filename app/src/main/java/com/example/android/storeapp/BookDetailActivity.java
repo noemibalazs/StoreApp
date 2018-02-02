@@ -8,12 +8,16 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.android.storeapp.data.BookContract.BookEntry;
 
 import java.util.ArrayList;
@@ -28,10 +32,16 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
     private TextView mSupEmail;
     private TextView mSupPhone;
     private Spinner mImageSpinner;
+    private Button mPlus;
+    private Button mMinus;
+    private Button mOrder;
+    private int mQuantity;
 
     private Uri mCurrentUri;
     private static final int BOOK_LOADER =1;
     private int mImage = BookEntry.BOOK_BOOK;
+
+    private static final String LOG_TAG = BookDetailActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +56,9 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
         mSupEmail = findViewById(R.id.detail_sup_email);
         mSupPhone = findViewById(R.id.detail_sup_phone);
         mImageSpinner = findViewById(R.id.detail_image_spinner);
+        mPlus = findViewById(R.id.plus_detail);
+        mMinus = findViewById(R.id.minus_detail);
+        mOrder = findViewById(R.id.button_order_detail);
 
         Intent intent = getIntent();
         mCurrentUri = intent.getData();
@@ -53,6 +66,49 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
         setupSpinner();
 
         getLoaderManager().initLoader(BOOK_LOADER, null, this);
+
+        mOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + mSupPhone.getText().toString()));
+                if (intent.resolveActivity(getApplicationContext().getPackageManager()) != null) {
+                    getApplicationContext().startActivity(intent);
+                }
+            }
+        });
+
+        mPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String quantity = mBookQuantity.getText().toString();
+                if (Integer.parseInt(quantity) == 100){
+                    Toast.makeText(BookDetailActivity.this, getString(R.string.are_you_sure), Toast.LENGTH_SHORT).show();
+                } else {
+                    mQuantity = Integer.parseInt(quantity);
+                    mQuantity++;
+                    mBookQuantity.setText(String.valueOf(mQuantity));
+                }
+            }
+        });
+
+        mMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String quantity = mBookQuantity.getText().toString();
+                if (Integer.parseInt(quantity) == 0){
+                    Toast.makeText(BookDetailActivity.this,getString(R.string.minus_value), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else {
+                    mQuantity = Integer.parseInt(quantity);
+                    mQuantity--;
+                    mBookQuantity.setText(String.valueOf(mQuantity));
+                }
+            }
+        });
+
+
     }
 
     private void setupSpinner(){
@@ -88,6 +144,11 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
 
     }
 
+    private void deleteBook(){
+        int deletedRows = getContentResolver().delete(mCurrentUri, null, null);
+        Log.v(LOG_TAG, deletedRows + " rows deleted from database");
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_detail, menu);
@@ -96,12 +157,15 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.edit_edit){
-            Intent intent = new Intent(BookDetailActivity.this, BookEditorActivity.class);
-            intent.setData(mCurrentUri);
-            startActivity(intent);
-            return true;
+        switch (item.getItemId()){
+            case R.id.edit_edit:
+                 Intent intent = new Intent(BookDetailActivity.this, BookEditorActivity.class);
+                 intent.setData(mCurrentUri);
+                 startActivity(intent);
+                 return true;
+            case R.id.edit_delete_menu_detail:
+                deleteBook();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

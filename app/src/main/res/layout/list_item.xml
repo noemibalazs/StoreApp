@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/activity_margin"
     android:id="@+id/parent_view"
     android:descendantFocusability="blocksDescendants"
     android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:id="@+id/adapter_name"
         android:text="@string/adapter_name"
         android:layout_marginTop="10dp"
-        android:textColor="#795548"
+        android:textColor="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -22,7 +22,7 @@
         android:text="@string/adapter_author"
         android:layout_marginTop="10dp"
         android:layout_below="@id/adapter_name"
-        android:textColor="#795548"
+        android:textColor="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -38,7 +38,7 @@
         <TextView
             android:id="@+id/adapter_quantity"
             android:text="@string/adapter_quantity"
-            android:textColor="#795548"
+            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -46,7 +46,7 @@
             android:layout_marginLeft="5dp"
             android:id="@+id/adapter_quantity_list"
             android:text="12"
-            android:textColor="#795548"
+            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -58,7 +58,7 @@
         android:layout_below="@id/adapter_lin"
         android:text="0770152804"
         android:layout_marginTop="10dp"
-        android:textColor="#795548"
+        android:textColor="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -91,7 +91,7 @@
                 android:textSize="14dp"
                 android:background="@drawable/button_drawable"
                 android:textStyle="bold"
-                android:textColor="#795548"
+                android:textColor="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -101,8 +101,8 @@
                  android:text="@string/order"
                  android:background="@drawable/button_drawable"
                  android:textStyle="bold"
-                 android:textSize="14dp"
-                 android:textColor="#795548"
+                 android:textSize="14sp"
+                 android:textColor="@color/colorPrimary"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content" />
 
@@ -121,7 +121,7 @@
             android:id="@+id/adapter_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#795548"
+            android:textColor="@color/colorPrimary"
             android:layout_marginTop="10dp"
             android:text="@string/adapter_price" />
 
@@ -131,7 +131,7 @@
             android:layout_marginTop="10dp"
             android:id="@+id/adapter_price_list"
             android:text="1"
-            android:textColor="#795548"
+            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
