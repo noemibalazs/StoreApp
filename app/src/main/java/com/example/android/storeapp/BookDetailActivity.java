@@ -32,10 +32,7 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
     private TextView mSupEmail;
     private TextView mSupPhone;
     private Spinner mImageSpinner;
-    private Button mPlus;
-    private Button mMinus;
     private Button mOrder;
-    private int mQuantity;
 
     private Uri mCurrentUri;
     private static final int BOOK_LOADER =1;
@@ -56,8 +53,6 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
         mSupEmail = findViewById(R.id.detail_sup_email);
         mSupPhone = findViewById(R.id.detail_sup_phone);
         mImageSpinner = findViewById(R.id.detail_image_spinner);
-        mPlus = findViewById(R.id.plus_detail);
-        mMinus = findViewById(R.id.minus_detail);
         mOrder = findViewById(R.id.button_order_detail);
 
         Intent intent = getIntent();
@@ -78,35 +73,7 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
             }
         });
 
-        mPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String quantity = mBookQuantity.getText().toString();
-                if (Integer.parseInt(quantity) == 100){
-                    Toast.makeText(BookDetailActivity.this, getString(R.string.are_you_sure), Toast.LENGTH_SHORT).show();
-                } else {
-                    mQuantity = Integer.parseInt(quantity);
-                    mQuantity++;
-                    mBookQuantity.setText(String.valueOf(mQuantity));
-                }
-            }
-        });
 
-        mMinus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String quantity = mBookQuantity.getText().toString();
-                if (Integer.parseInt(quantity) == 0){
-                    Toast.makeText(BookDetailActivity.this,getString(R.string.minus_value), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                else {
-                    mQuantity = Integer.parseInt(quantity);
-                    mQuantity--;
-                    mBookQuantity.setText(String.valueOf(mQuantity));
-                }
-            }
-        });
 
 
     }
