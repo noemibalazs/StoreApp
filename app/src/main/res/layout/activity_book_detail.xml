@@ -69,7 +69,40 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:paddingTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <Button
+            android:id="@+id/plus"
+            android:text="@string/plus"
+            android:textStyle="bold"
+            android:background="@color/colorPrimary"
+            android:layout_marginLeft="100dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+
+        <TextView
+            android:id="@+id/update_text_view"
+            android:text="@string/update_quantity"
+            android:layout_marginLeft="12dp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/minus"
+            android:text="@string/minus"
+            android:background="@color/colorPrimary"
+            android:textStyle="bold"
+            android:layout_marginLeft="12dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -121,6 +154,15 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button_order_settings"
+        android:layout_marginStart="114dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/order_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:orientation="horizontal"

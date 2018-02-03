@@ -2,10 +2,12 @@ package com.example.android.storeapp;
 
 import android.app.LoaderManager;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -93,6 +95,32 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
 
     }
 
+    private void deleteBook(){
+        getContentResolver().delete(mCurrentUri, null, null);
+        finish();
+    }
+
+    private void showsDeleteWarningDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.delete_this_book);
+        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteBook();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (dialog!=null){
+                    dialog.dismiss();
+                }
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_detail, menu);
@@ -101,11 +129,14 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.edit_edit){
+        switch (item.getItemId()){
+            case R.id.edit_edit:
                  Intent intent = new Intent(BookDetailActivity.this, BookEditorActivity.class);
                  intent.setData(mCurrentUri);
                  startActivity(intent);
+                 return true;
+            case R.id.detail_delete_menu:
+                 showsDeleteWarningDialog();
                  return true;
         }
         return super.onOptionsItemSelected(item);

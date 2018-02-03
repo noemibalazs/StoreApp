@@ -324,7 +324,8 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
             Toast.makeText(this, getString(string.error_with_deleting_a_book), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, getString(string.book_deleted), Toast.LENGTH_SHORT).show();
-        }}
+          }
+        }
         finish();
     }
 
