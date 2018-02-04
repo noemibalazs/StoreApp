@@ -140,6 +140,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
                 }
             }
         });
+
         }
 
     private void setupSpinner(){

@@ -76,7 +76,7 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/plus"
+            android:id="@+id/plus_detail"
             android:text="@string/plus"
             android:textStyle="bold"
             android:background="@color/colorPrimary"
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/minus"
+            android:id="@+id/minus_detail"
             android:text="@string/minus"
             android:background="@color/colorPrimary"
             android:textStyle="bold"

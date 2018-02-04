@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.storeapp.data.BookContract.BookEntry;
 
@@ -33,6 +34,9 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
     private TextView mSupPhone;
     private Spinner mImageSpinner;
     private Button mOrder;
+    private Button mMinus;
+    private Button mPlus;
+    private int mQuantity;
 
 
     private Uri mCurrentUri;
@@ -55,6 +59,9 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
         mSupPhone = findViewById(R.id.detail_sup_phone);
         mImageSpinner = findViewById(R.id.detail_image_spinner);
         mOrder = findViewById(R.id.button_order_detail);
+        mPlus = findViewById(R.id.plus_detail);
+        mMinus = findViewById(R.id.minus_detail);
+
 
         Intent intent = getIntent();
         mCurrentUri = intent.getData();
@@ -70,6 +77,36 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
                 intent.setData(Uri.parse("tel:" + mSupPhone.getText().toString()));
                 if (intent.resolveActivity(getApplicationContext().getPackageManager()) != null) {
                     getApplicationContext().startActivity(intent);
+                }
+            }
+        });
+
+        mPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String quantity = mBookQuantity.getText().toString();
+                if (Integer.parseInt(quantity) == 100){
+                    Toast.makeText(BookDetailActivity.this, getString(R.string.are_you_sure), Toast.LENGTH_SHORT).show();
+                } else {
+                    mQuantity = Integer.parseInt(quantity);
+                    mQuantity++;
+                    mBookQuantity.setText(String.valueOf(mQuantity));
+                }
+            }
+        });
+
+        mMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String quantity = mBookQuantity.getText().toString();
+                if (Integer.parseInt(quantity) == 0){
+                    Toast.makeText(BookDetailActivity.this,getString(R.string.minus_value), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else {
+                    mQuantity = Integer.parseInt(quantity);
+                    mQuantity--;
+                    mBookQuantity.setText(String.valueOf(mQuantity));
                 }
             }
         });
