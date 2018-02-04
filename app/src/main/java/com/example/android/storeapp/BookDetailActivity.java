@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
     private TextView mSupEmail;
     private TextView mSupPhone;
     private Spinner mImageSpinner;
+    private Button mOrder;
 
 
     private Uri mCurrentUri;
@@ -52,6 +54,7 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
         mSupEmail = findViewById(R.id.detail_sup_email);
         mSupPhone = findViewById(R.id.detail_sup_phone);
         mImageSpinner = findViewById(R.id.detail_image_spinner);
+        mOrder = findViewById(R.id.button_order_detail);
 
         Intent intent = getIntent();
         mCurrentUri = intent.getData();
@@ -59,6 +62,17 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
         setupSpinner();
 
         getLoaderManager().initLoader(BOOK_LOADER, null, this);
+
+        mOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + mSupPhone.getText().toString()));
+                if (intent.resolveActivity(getApplicationContext().getPackageManager()) != null) {
+                    getApplicationContext().startActivity(intent);
+                }
+            }
+        });
 
     }
 

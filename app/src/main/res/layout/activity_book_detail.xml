@@ -156,7 +156,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_order_settings"
+        android:id="@+id/button_order_detail"
         android:layout_marginStart="114dp"
         android:layout_marginTop="10dp"
         android:background="@color/colorPrimary"
