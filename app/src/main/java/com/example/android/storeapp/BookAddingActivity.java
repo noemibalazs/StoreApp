@@ -41,7 +41,6 @@ public class BookAddingActivity extends AppCompatActivity implements LoaderManag
 
     private int mImage = BookEntry.BOOK_BOOK;
     private Uri mCurrentUri;
-    private static final int BOOK_LOADER_MAN = 1;
 
     private boolean mBookHasChanged = false;
     private View.OnTouchListener mTouch = new View.OnTouchListener() {
