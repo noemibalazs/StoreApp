@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.storeapp">
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_book_black"
@@ -29,8 +30,15 @@
             android:authorities="com.example.android.storeapp"
             android:exported="false" />
 
-        <activity android:name=".BookDetailActivity"
+        <activity
+            android:name=".BookDetailActivity"
             android:label="@string/book_details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.storeapp.BookActivity" />
+        </activity>
+        <activity android:name=".BookAddingActivity"
+            android:label="@string/add_a_book">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.storeapp.BookActivity" />

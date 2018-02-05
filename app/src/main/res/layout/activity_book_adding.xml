@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_margin"
+    tools:context="com.example.android.storeapp.BookAddingActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/overview"
+            android:text="@string/overview"
+            android:paddingTop="16dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:paddingLeft="40dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:hint="Book Name"
+                android:id="@+id/book_name_adding"
+                android:inputType="textCapWords"
+                android:textColor="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:hint="Author"
+                android:inputType="textCapWords"
+                android:id="@+id/book_author_adding"
+                android:textColor="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <EditText
+                android:id="@+id/book_price_adding"
+                android:hint="Price"
+                android:textColor="@color/colorAccent"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <EditText
+                android:id="@+id/book_quantity_adding"
+                android:hint="Quantity"
+                android:textColor="@color/colorAccent"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/plus_adding"
+            android:text="@string/plus"
+            android:textStyle="bold"
+            android:background="@color/colorPrimary"
+            android:layout_marginLeft="100dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+
+        <TextView
+            android:id="@+id/update_text_view"
+            android:text="@string/update_quantity"
+            android:layout_marginLeft="12dp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/minus_adding"
+            android:text="@string/minus"
+            android:background="@color/colorPrimary"
+            android:textStyle="bold"
+            android:layout_marginLeft="12dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/supplier"
+            android:text="@string/supplier_info"
+            android:paddingTop="16dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:paddingLeft="17dp"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/sup_name_adding"
+                android:inputType="textCapWords"
+                android:hint="Supplier name"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/sup_email_adding"
+                android:hint="Email address"
+                android:textColor="@color/colorAccent"
+                android:inputType="textEmailAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/sup_phone_adding"
+                android:hint="Phone number"
+                android:inputType="phone"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_order_settings_adding"
+        android:layout_marginLeft="114dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/order_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/image_settings"
+            android:text="@string/image"
+            android:paddingTop="16dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:paddingTop="16dp"
+            android:paddingLeft="40dp"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/image_spinner_adding"
+                android:spinnerMode="dropdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

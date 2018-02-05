@@ -37,7 +37,7 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BookActivity.this, BookEditorActivity.class);
+                Intent intent = new Intent(BookActivity.this, BookAddingActivity.class);
                 startActivity(intent);
             }
         });
@@ -98,7 +98,7 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
                insertBook();
                return true;
            case R.id.adding_a_new_book:
-               Intent intent = new Intent(BookActivity.this, BookEditorActivity.class);
+               Intent intent = new Intent(BookActivity.this, BookAddingActivity.class);
                startActivity(intent);
                return true;
            case R.id.delete_all_books:

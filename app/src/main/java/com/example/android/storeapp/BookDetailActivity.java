@@ -101,7 +101,6 @@ public class BookDetailActivity extends AppCompatActivity implements LoaderManag
                 String quantity = mBookQuantity.getText().toString();
                 if (Integer.parseInt(quantity) == 0){
                     Toast.makeText(BookDetailActivity.this,getString(R.string.minus_value), Toast.LENGTH_SHORT).show();
-                    return;
                 }
                 else {
                     mQuantity = Integer.parseInt(quantity);

@@ -1,16 +1,12 @@
 package com.example.android.storeapp;
 
-import android.annotation.SuppressLint;
+import android.app.LoaderManager;
 import android.content.ContentValues;
-import android.content.DialogInterface;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-import android.app.LoaderManager;
-import android.support.v4.app.NavUtils;
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -28,10 +24,7 @@ import com.example.android.storeapp.data.BookContract.BookEntry;
 
 import java.util.ArrayList;
 
-import static com.example.android.storeapp.R.*;
-
-
-public class BookEditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class BookAddingActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private EditText mNameBook;
     private EditText mAuthorBook;
@@ -48,7 +41,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
     private int mImage = BookEntry.BOOK_BOOK;
     private Uri mCurrentUri;
-    private static final int BOOK_LOADER_MN = 1;
+    private static final int BOOK_LOADER_MAN = 1;
 
     private boolean mBookHasChanged = false;
     private View.OnTouchListener mTouch = new View.OnTouchListener() {
@@ -59,32 +52,26 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         }
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(layout.activity_book_editor);
+        setContentView(R.layout.activity_book_adding);
 
         Intent intent = getIntent();
         mCurrentUri = intent.getData();
-        if (mCurrentUri == null ){
-            setTitle(getString(R.string.add_a_book));
-            invalidateOptionsMenu();
-        } else {
-            setTitle(getString(R.string.edit_a_book));
-            getLoaderManager().initLoader(BOOK_LOADER_MN, null, this);
-        }
 
-        mNameBook = findViewById(R.id.book_name);
-        mAuthorBook = findViewById(R.id.book_author);
-        mPriceBook = findViewById(R.id.book_price);
-        mQuantityBook = findViewById(R.id.book_quantity);
-        mSupplierName = findViewById(R.id.sup_name);
-        mSupplierEmail = findViewById(R.id.sup_email);
-        mSupplierPhone = findViewById(R.id.sup_phone);
-        mImageSpinner = findViewById(R.id.image_spinner);
-        mOrder = findViewById(R.id.button_order_settings);
-        mPlus = findViewById(R.id.plus);
-        mMinus = findViewById(R.id.minus);
+        mNameBook = findViewById(R.id.book_name_adding);
+        mAuthorBook = findViewById(R.id.book_author_adding);
+        mPriceBook = findViewById(R.id.book_price_adding);
+        mQuantityBook = findViewById(R.id.book_quantity_adding);
+        mSupplierName = findViewById(R.id.sup_name_adding);
+        mSupplierEmail = findViewById(R.id.sup_email_adding);
+        mSupplierPhone = findViewById(R.id.sup_phone_adding);
+        mImageSpinner = findViewById(R.id.image_spinner_adding);
+        mOrder = findViewById(R.id.button_order_settings_adding);
+        mPlus = findViewById(R.id.plus_adding);
+        mMinus = findViewById(R.id.minus_adding);
 
         mNameBook.setOnTouchListener(mTouch);
         mAuthorBook.setOnTouchListener(mTouch);
@@ -116,7 +103,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
             public void onClick(View view) {
                 String quantity = mQuantityBook.getText().toString();
                 if (Integer.parseInt(quantity) == 100){
-                    Toast.makeText(BookEditorActivity.this, getString(string.are_you_sure), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BookAddingActivity.this, getString(R.string.are_you_sure), Toast.LENGTH_SHORT).show();
                 } else {
                     mQuantity = Integer.parseInt(quantity);
                     mQuantity++;
@@ -130,8 +117,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
             public void onClick(View view) {
                 String quantity = mQuantityBook.getText().toString();
                 if (Integer.parseInt(quantity) == 0){
-                    Toast.makeText(BookEditorActivity.this,getString(string.minus_value), Toast.LENGTH_SHORT).show();
-                    return;
+                    Toast.makeText(BookAddingActivity.this,getString(R.string.minus_value), Toast.LENGTH_SHORT).show();
                 }
                 else {
                     mQuantity = Integer.parseInt(quantity);
@@ -141,18 +127,19 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
             }
         });
 
-        }
+
+    }
 
     private void setupSpinner(){
 
         ArrayList<Integer> imagesList = new ArrayList<>();
 
-        imagesList.add(drawable.book);
-        imagesList.add(drawable.b_a);
-        imagesList.add(drawable.ebook);
+        imagesList.add(R.drawable.book);
+        imagesList.add(R.drawable.b_a);
+        imagesList.add(R.drawable.ebook);
 
-       BookImageAdapter bookImageAdapter = new BookImageAdapter(getApplicationContext(), imagesList);
-       mImageSpinner.setAdapter(bookImageAdapter);
+        BookImageAdapter bookImageAdapter = new BookImageAdapter(getApplicationContext(), imagesList);
+        mImageSpinner.setAdapter(bookImageAdapter);
 
         mImageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -176,67 +163,31 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.editor_menu, menu);
+        getMenuInflater().inflate(R.menu.adding_menu, menu);
         return true;
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        if (mCurrentUri == null){
-            MenuItem menuItem = menu.findItem(R.id.edit_delete_menu);
-            menuItem.setVisible(false);
-        }
-        return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        if (!mBookHasChanged){
-        super.onBackPressed();
-        return;}
-
-        DialogInterface.OnClickListener dialogButton = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        };
-        showsUnsavedChangesDialog(dialogButton);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.edit_save_menu:
+            case R.id.save_adding:
                 saveBook();
                 finish();
                 return true;
-            case R.id.edit_delete_menu:
-                showsDeleteWarningDialog();
-                return true;
-            case android.R.id.home:
-                if (!mBookHasChanged){
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-                }
-                DialogInterface.OnClickListener dialogButton = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        NavUtils.navigateUpFromSameTask(BookEditorActivity.this);
-                    }
-                };
-                showsUnsavedChangesDialog(dialogButton);
+            case R.id.edit_adding:
+                Intent intent = new Intent(BookAddingActivity.this, BookEditorActivity.class);
+                intent.setData(mCurrentUri);
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void saveBook(){
-
         String bookName = mNameBook.getText().toString().trim();
         String bookAuthor = mAuthorBook.getText().toString().trim();
         String bookPrice = mPriceBook.getText().toString().trim();
@@ -249,7 +200,7 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
                 TextUtils.isEmpty(bookPrice) && TextUtils.isEmpty(bookQuantity) &&
                 TextUtils.isEmpty(bookSupName) && TextUtils.isEmpty(bookSupEmail) && TextUtils.isEmpty(bookSupPhone) &&
                 mImage == BookEntry.BOOK_BOOK){
-            Toast.makeText(this, getString(string.cannot_save_a_blank_item), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.cannot_save_a_blank_item), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -258,14 +209,14 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         if (!TextUtils.isEmpty(bookName)){
             values.put(BookEntry.BOOK_COLUMN_TITLE, bookName);}
         else {
-            Toast.makeText(this,getString(string.book_title_is_required), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,getString(R.string.book_title_is_required), Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!TextUtils.isEmpty(bookAuthor)){
             values.put(BookEntry.BOOK_COLUMN_AUTHOR, bookAuthor);}
         else {
-            Toast.makeText(this, getString(string.book_author_is_required), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.book_author_is_required), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -282,92 +233,33 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         if (!TextUtils.isEmpty(bookSupName)){
             values.put(BookEntry.BOOK_COLUMN_SUPPLIER_NAME, bookSupName);}
         else {
-            Toast.makeText(this, getString(string.book_supplier_name_is_required), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.book_supplier_name_is_required), Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!TextUtils.isEmpty(bookSupEmail)){
             values.put(BookEntry.BOOK_COLUMN_SUPPLIER_EMAIL, bookSupEmail);}
         else {
-            Toast.makeText(this, getString(string.book_supplier_email_addredd_is_required), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.book_supplier_email_addredd_is_required), Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!TextUtils.isEmpty(bookSupPhone)){
             values.put(BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER, bookSupPhone);}
         else {
-            Toast.makeText(this, getString(string.book_supplier_phone_number_is_required), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.book_supplier_phone_number_is_required), Toast.LENGTH_SHORT).show();
             return;
         }
         values.put(BookEntry.BOOK_COLUMN_IMAGE, mImage);
 
-        if (mCurrentUri == null){
-            Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
-            if (newUri == null){
-                Toast.makeText(this, getString(string.error_with_saving_book), Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, getString(string.book_saved), Toast.LENGTH_SHORT).show();
-            }
-        }
-        else {
-           int newBook = getContentResolver().update(mCurrentUri, values, null, null);
-           if (newBook == 0){
-               Toast.makeText(this, getString(string.book_update_failed), Toast.LENGTH_SHORT).show();
-           } else {
-               Toast.makeText(this, getString(string.book_updated), Toast.LENGTH_SHORT).show();
-           }
-        }
-    }
-
-    private void deleteBook(){
-        if (mCurrentUri != null){
-       int deleteRow = getContentResolver().delete(mCurrentUri, null, null );
-        if (deleteRow == 0) {
-            Toast.makeText(this, getString(string.error_with_deleting_a_book), Toast.LENGTH_SHORT).show();
+        Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+        if (newUri == null){
+            Toast.makeText(this, getString(R.string.error_with_saving_book), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, getString(string.book_deleted), Toast.LENGTH_SHORT).show();
-          }
+            Toast.makeText(this, getString(R.string.book_saved), Toast.LENGTH_SHORT).show();
         }
-        finish();
     }
 
-    private void showsDeleteWarningDialog(){
-       AlertDialog.Builder builder = new AlertDialog.Builder(this);
-       builder.setTitle(string.delete_this_book);
-       builder.setPositiveButton(string.delete, new DialogInterface.OnClickListener() {
-           @Override
-           public void onClick(DialogInterface dialog, int which) {
-               deleteBook();
-           }
-       });
-       builder.setNegativeButton(string.cancel, new DialogInterface.OnClickListener() {
-           @Override
-           public void onClick(DialogInterface dialog, int which) {
-               if (dialog!=null){
-                   dialog.dismiss();
-               }
-           }
-       });
-       AlertDialog dialog = builder.create();
-       dialog.show();
-    }
-
-    private void showsUnsavedChangesDialog(DialogInterface.OnClickListener dialogButton){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(string.discard_your_changes_and_quit_editing);
-        builder.setPositiveButton(string.discard, dialogButton);
-        builder.setNegativeButton(string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (dialog!=null){
-                    dialog.dismiss();
-                }
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -382,12 +274,12 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
                 BookEntry.BOOK_COLUMN_SUPPLIER_PHONE_NUMBER,
                 BookEntry.BOOK_COLUMN_IMAGE};
 
-        return new CursorLoader(this, mCurrentUri, projection, null, null, null);
+        return new CursorLoader(BookAddingActivity.this, mCurrentUri, projection, null, null, null);
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+
         if (cursor == null || cursor.getCount()<1){
             return;
         }
@@ -430,10 +322,12 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
                     break;
             }
         }
+
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
+
         mNameBook.setText("");
         mAuthorBook.setText("");
         mPriceBook.setText("");
@@ -442,5 +336,6 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         mSupplierEmail.setText("");
         mSupplierPhone.setText("");
         mImageSpinner.setSelection(0);
+
     }
 }
