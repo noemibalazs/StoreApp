@@ -19,7 +19,7 @@
         </activity>
         <activity
             android:name=".BookEditorActivity"
-            android:label="@string/add_a_book">
+            android:label="@string/edit_a_book">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.storeapp.BookActivity" />

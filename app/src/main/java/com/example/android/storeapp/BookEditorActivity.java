@@ -66,13 +66,9 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
 
         Intent intent = getIntent();
         mCurrentUri = intent.getData();
-        if (mCurrentUri == null ){
-            setTitle(getString(R.string.add_a_book));
-            invalidateOptionsMenu();
-        } else {
-            setTitle(getString(R.string.edit_a_book));
-            getLoaderManager().initLoader(BOOK_LOADER_MN, null, this);
-        }
+
+        getLoaderManager().initLoader(BOOK_LOADER_MN, null, this);
+
 
         mNameBook = findViewById(R.id.book_name);
         mAuthorBook = findViewById(R.id.book_author);
@@ -179,16 +175,6 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.editor_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        if (mCurrentUri == null){
-            MenuItem menuItem = menu.findItem(R.id.edit_delete_menu);
-            menuItem.setVisible(false);
-        }
         return true;
     }
 
@@ -301,22 +287,13 @@ public class BookEditorActivity extends AppCompatActivity implements LoaderManag
         }
         values.put(BookEntry.BOOK_COLUMN_IMAGE, mImage);
 
-        if (mCurrentUri == null){
-            Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
-            if (newUri == null){
-                Toast.makeText(this, getString(string.error_with_saving_book), Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, getString(string.book_saved), Toast.LENGTH_SHORT).show();
-            }
+        int newBook = getContentResolver().update(mCurrentUri, values, null, null);
+        if (newBook == 0){
+            Toast.makeText(this, getString(string.book_update_failed), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, getString(string.book_updated), Toast.LENGTH_SHORT).show();
         }
-        else {
-           int newBook = getContentResolver().update(mCurrentUri, values, null, null);
-           if (newBook == 0){
-               Toast.makeText(this, getString(string.book_update_failed), Toast.LENGTH_SHORT).show();
-           } else {
-               Toast.makeText(this, getString(string.book_updated), Toast.LENGTH_SHORT).show();
-           }
-        }
+
     }
 
     private void deleteBook(){
