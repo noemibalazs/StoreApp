@@ -14,3 +14,7 @@ Learnings:
 
 Screenshots:
 
+![1_store app](https://user-images.githubusercontent.com/33603567/47102004-427e9080-d244-11e8-8c63-596f5a885812.jpg)
+
+![2_store app](https://user-images.githubusercontent.com/33603567/47102010-46121780-d244-11e8-97ac-e9b78ebfc196.jpg)
+
